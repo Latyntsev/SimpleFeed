@@ -15,7 +15,7 @@
 @interface SFTimeLineViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic,strong) Timeline *timeline;
-
+@property (nonatomic,strong) CAGradientLayer *mask;
 @end
 
 @implementation SFTimeLineViewController
@@ -26,6 +26,26 @@
     if (!self.userName) {
         self.userName = @"dubizzle";
     }
+    
+    self.mask = [CAGradientLayer layer];
+    
+    self.mask.frame = self.view.frame;
+    self.mask.colors = [NSArray arrayWithObjects:
+                        (id)[UIColor blackColor].CGColor,
+                        (id)[UIColor blackColor].CGColor,
+                        (id)[UIColor clearColor].CGColor,
+                        (id)[UIColor clearColor].CGColor, nil];
+    self.mask.locations = [NSArray arrayWithObjects:
+                           [NSNumber numberWithFloat:0.0f],
+                           [NSNumber numberWithFloat:0.7f],
+                           [NSNumber numberWithFloat:0.88],
+                           [NSNumber numberWithFloat:1], nil];
+    
+    self.mask.startPoint = CGPointZero;
+    self.mask.endPoint = CGPointMake(0, 1);
+    
+    
+    self.contentView.layer.mask = self.mask;
 
 }
 
@@ -46,6 +66,18 @@
 
 - (void)reloadData {
     [self.tableView reloadData];
+    
+    UIView *view = [self.tableView snapshotViewAfterScreenUpdates:NO];
+    view.center = self.tableView.center;
+    [self.tableView.superview addSubview:view];
+    [UIView animateWithDuration:0.25 animations:^{
+        view.alpha = 0;
+        view.frame = CGRectInset(view.frame, -20, -20);
+        view.center = self.tableView.center;
+    } completion:^(BOOL finished) {
+        [view removeFromSuperview];
+    }];
+    
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource
