@@ -129,7 +129,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="dateLabel" destination="NMR-0P-Y6L" id="wDs-Qm-FH6"/>
-                                            <outlet property="logoImageVIew" destination="BIH-JN-xsR" id="3vM-pA-Gvg"/>
+                                            <outlet property="logoImageView" destination="6Wt-u7-fhD" id="LR4-W2-gPa"/>
                                             <outlet property="nameLabel" destination="oiw-JZ-Wkk" id="sKO-y9-3EM"/>
                                             <outlet property="screenNameLabel" destination="z1j-yK-E04" id="b5r-Xw-Dgq"/>
                                             <outlet property="statusLabel" destination="nCt-SQ-a7v" id="6zo-Ut-060"/>

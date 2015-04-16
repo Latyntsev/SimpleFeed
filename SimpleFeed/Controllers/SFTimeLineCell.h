@@ -12,7 +12,7 @@
 
 @interface SFTimeLineCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIView *logoImageVIew;
+@property (weak, nonatomic) IBOutlet UIImageView *logoImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;

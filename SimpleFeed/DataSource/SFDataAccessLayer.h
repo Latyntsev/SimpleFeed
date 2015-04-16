@@ -10,6 +10,7 @@
 @class NSManagedObjectContext;
 @class SFDataSource;
 @class Timeline;
+@class UIImage;
 
 @interface SFDataAccessLayer : NSObject
 
@@ -23,7 +24,9 @@ typedef NS_ENUM(NSInteger, SFResponseStatus) {
 - (NSOperationQueue *)queue;
 
 typedef void(^SFDataAccessLayerGetFeedComplitionBlock)(Timeline *timeline, NSError *error, SFResponseStatus responseStatus);
-
 - (NSOperation *)getFeedForUser:(NSString *)user withComplitionBlock:(SFDataAccessLayerGetFeedComplitionBlock)complitionBlock;
+
+typedef void(^DownloadImageComplitionBlock)(UIImage *image, NSString *link, NSTimeInterval loadingDuration);
+- (void)downloadImageWithLink:(NSString *)link complitionBlock:(DownloadImageComplitionBlock)complitionBlock;
 
 @end

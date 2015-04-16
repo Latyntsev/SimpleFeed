@@ -9,15 +9,39 @@
 #import "SFDataAccessLayer.h"
 #import "SFDataSource.h"
 #import "SFModel.h"
+#import <UIKit/UIKit.h>
 
 NSString *const key = @"hws3MrA6qCOp0Mc9o0BgxA";
 NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
+
+@interface SFLoadingImageItem : NSObject
+
+@property (nonatomic,copy) DownloadImageComplitionBlock complitionBlock;
+@property (nonatomic,strong) NSDate *dateAdded;
+@property (nonatomic,strong) NSString *link;
+
+
+- (void)executeBlockForImage:(UIImage *)image;
+
+@end
+
+@implementation SFLoadingImageItem
+
+- (void)executeBlockForImage:(UIImage *)image {
+    self.complitionBlock(image,self.link,[[NSDate date] timeIntervalSinceDate:self.dateAdded]);
+}
+
+@end
 
 @interface SFDataAccessLayer ()
 
 @property (nonatomic,strong) SFDataSource *dataSource;
 @property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic,strong) NSOperationQueue *queue;
+
+@property (nonatomic,strong) NSMutableDictionary *loadingImageStack;
+@property (nonatomic,strong) NSCache *imageCache;
+
 
 @end
 
@@ -141,6 +165,61 @@ NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
     
     [self.queue addOperation:blockOperation];
     return blockOperation;
+}
+
+- (void)downloadImageWithLink:(NSString *)link complitionBlock:(DownloadImageComplitionBlock)complitionBlock {
+    
+    if (!self.imageCache) {
+        self.imageCache = [[NSCache alloc] init];
+    }
+    
+    UIImage *image = [self.imageCache objectForKey:link];
+    if (image) {
+        complitionBlock(image,link,0);
+        return;
+    }
+    
+    if (!self.loadingImageStack) {
+        self.loadingImageStack = [NSMutableDictionary dictionary];
+    }
+    
+    NSMutableArray *listOfRequests = self.loadingImageStack[link];
+    if (!listOfRequests) {
+        listOfRequests = [NSMutableArray array];
+        [self.loadingImageStack setValue:listOfRequests forKey:link];
+    }
+    
+    SFLoadingImageItem *requestItem = [[SFLoadingImageItem alloc] init];
+    requestItem.complitionBlock = complitionBlock;
+    requestItem.dateAdded = [NSDate date];
+    requestItem.link = link;
+    
+    if (listOfRequests.count == 0) {
+        
+        __weak typeof(self) wself = self;
+        __weak NSMutableArray *theListOfRequests = listOfRequests;
+        
+        [self.queue addOperationWithBlock:^{
+            
+            NSURL *url = [NSURL URLWithString:link];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            UIImage *image = [UIImage imageWithData:data];
+            image = [UIImage imageWithCGImage:image.CGImage
+                                        scale:[UIScreen mainScreen].scale
+                                  orientation:image.imageOrientation];
+            
+            [wself.imageCache setObject:image forKey:link];
+            
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+                for (SFLoadingImageItem *request in theListOfRequests) {
+                    [request executeBlockForImage:image];
+                }
+                [theListOfRequests removeAllObjects];
+            }];
+            
+        }];
+    }
+    [listOfRequests addObject:requestItem];
 }
 
 @end
