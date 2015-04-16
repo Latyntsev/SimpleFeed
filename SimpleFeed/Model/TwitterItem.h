@@ -19,6 +19,7 @@
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * screen_name;
 @property (nonatomic, retain) NSString * profile_image_url;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) Timeline *timeline;
 
 @end

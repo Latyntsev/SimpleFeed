@@ -8,8 +8,7 @@
 
 #import "SFDataAccessLayer.h"
 #import "SFDataSource.h"
-#import "Timeline.h"
-#import "TwitterItem.h"
+#import "SFModel.h"
 
 NSString *const key = @"hws3MrA6qCOp0Mc9o0BgxA";
 NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
@@ -122,7 +121,7 @@ NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
                     for (NSDictionary *twitData in data) {
                         TwitterItem *twitterItem = [NSEntityDescription insertNewObjectForEntityForName:@"TwitterItem"
                                                                                  inManagedObjectContext:wself.managedObjectContext];
-                        
+                        [twitterItem fillDataWithResponse:twitData];
                         twitterItem.timeline = timeline;
                     }
                     

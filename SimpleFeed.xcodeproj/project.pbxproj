@@ -22,8 +22,10 @@
 		0C04CAE11AE0148F005A42F8 /* SFLoadingProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAE01AE0148F005A42F8 /* SFLoadingProgressViewController.m */; };
 		0C04CAE41AE014A9005A42F8 /* SFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAE31AE014A9005A42F8 /* SFViewController.m */; };
 		0C04CAE71AE01706005A42F8 /* SFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAE61AE01706005A42F8 /* SFTimeLineViewController.m */; };
-		0C04CAEA1AE023AA005A42F8 /* TwitterItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAE91AE023AA005A42F8 /* TwitterItem.m */; };
 		0C04CAED1AE023AB005A42F8 /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAEC1AE023AB005A42F8 /* Timeline.m */; };
+		0C04CAF01AE02496005A42F8 /* TwitterItem+FillData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAEF1AE02496005A42F8 /* TwitterItem+FillData.m */; };
+		0C04CAF41AE02ACD005A42F8 /* SFTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAF31AE02ACD005A42F8 /* SFTimeLineCell.m */; };
+		0C04CAF71AE03393005A42F8 /* TwitterItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAF61AE03393005A42F8 /* TwitterItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,10 +65,15 @@
 		0C04CAE31AE014A9005A42F8 /* SFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFViewController.m; sourceTree = "<group>"; };
 		0C04CAE51AE01706005A42F8 /* SFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTimeLineViewController.h; sourceTree = "<group>"; };
 		0C04CAE61AE01706005A42F8 /* SFTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTimeLineViewController.m; sourceTree = "<group>"; };
-		0C04CAE81AE023AA005A42F8 /* TwitterItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterItem.h; sourceTree = "<group>"; };
-		0C04CAE91AE023AA005A42F8 /* TwitterItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterItem.m; sourceTree = "<group>"; };
 		0C04CAEB1AE023AB005A42F8 /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timeline.h; sourceTree = "<group>"; };
 		0C04CAEC1AE023AB005A42F8 /* Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timeline.m; sourceTree = "<group>"; };
+		0C04CAEE1AE02496005A42F8 /* TwitterItem+FillData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TwitterItem+FillData.h"; sourceTree = "<group>"; };
+		0C04CAEF1AE02496005A42F8 /* TwitterItem+FillData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TwitterItem+FillData.m"; sourceTree = "<group>"; };
+		0C04CAF11AE024CB005A42F8 /* SFModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFModel.h; sourceTree = "<group>"; };
+		0C04CAF21AE02ACD005A42F8 /* SFTimeLineCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTimeLineCell.h; sourceTree = "<group>"; };
+		0C04CAF31AE02ACD005A42F8 /* SFTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTimeLineCell.m; sourceTree = "<group>"; };
+		0C04CAF51AE03393005A42F8 /* TwitterItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterItem.h; sourceTree = "<group>"; };
+		0C04CAF61AE03393005A42F8 /* TwitterItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,10 +172,13 @@
 		0C04CAD21AE006CB005A42F8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				0C04CAE81AE023AA005A42F8 /* TwitterItem.h */,
+				0C04CAF11AE024CB005A42F8 /* SFModel.h */,
 				0C04CAEB1AE023AB005A42F8 /* Timeline.h */,
 				0C04CAEC1AE023AB005A42F8 /* Timeline.m */,
-				0C04CAE91AE023AA005A42F8 /* TwitterItem.m */,
+				0C04CAF51AE03393005A42F8 /* TwitterItem.h */,
+				0C04CAF61AE03393005A42F8 /* TwitterItem.m */,
+				0C04CAEE1AE02496005A42F8 /* TwitterItem+FillData.h */,
+				0C04CAEF1AE02496005A42F8 /* TwitterItem+FillData.m */,
 				0C04CAD31AE006CB005A42F8 /* SimpleFeed.xcdatamodeld */,
 			);
 			path = Model;
@@ -177,6 +187,8 @@
 		0C04CADE1AE01480005A42F8 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0C04CAF21AE02ACD005A42F8 /* SFTimeLineCell.h */,
+				0C04CAF31AE02ACD005A42F8 /* SFTimeLineCell.m */,
 				0C04CAE51AE01706005A42F8 /* SFTimeLineViewController.h */,
 				0C04CAE61AE01706005A42F8 /* SFTimeLineViewController.m */,
 				0C04CADF1AE0148F005A42F8 /* SFLoadingProgressViewController.h */,
@@ -289,15 +301,17 @@
 			files = (
 				0C04CA951ADF9895005A42F8 /* AppDelegate.m in Sources */,
 				0C04CABE1ADF9913005A42F8 /* SFDataSource.m in Sources */,
+				0C04CAF71AE03393005A42F8 /* TwitterItem.m in Sources */,
+				0C04CAF41AE02ACD005A42F8 /* SFTimeLineCell.m in Sources */,
 				0C04CAC11ADF9928005A42F8 /* SFDataAccessLayer.m in Sources */,
 				0C04CABB1ADF9904005A42F8 /* SFWebService.m in Sources */,
 				0C04CAE11AE0148F005A42F8 /* SFLoadingProgressViewController.m in Sources */,
 				0C04CAD51AE006CB005A42F8 /* SimpleFeed.xcdatamodeld in Sources */,
 				0C04CAE71AE01706005A42F8 /* SFTimeLineViewController.m in Sources */,
 				0C04CAED1AE023AB005A42F8 /* Timeline.m in Sources */,
-				0C04CAEA1AE023AA005A42F8 /* TwitterItem.m in Sources */,
 				0C04CA921ADF9895005A42F8 /* main.m in Sources */,
 				0C04CAE41AE014A9005A42F8 /* SFViewController.m in Sources */,
+				0C04CAF01AE02496005A42F8 /* TwitterItem+FillData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

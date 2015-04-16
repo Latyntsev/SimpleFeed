@@ -7,8 +7,9 @@
 //
 
 #import "SFTimeLineViewController.h"
+#import "SFTimeLineCell.h"
 #import "SFDataAccessLayer.h"
-#import "Timeline.h"
+#import "SFModel.h"
 
 
 @interface SFTimeLineViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -20,6 +21,7 @@
 @implementation SFTimeLineViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     if (!self.userName) {
         self.userName = @"dubizzle";
@@ -28,6 +30,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
     [super viewWillAppear:animated];
     [self showLoadingProgress:YES];
     self.title = [NSString stringWithFormat:@"@%@",self.userName];
@@ -51,13 +54,36 @@
     return self.timeline.twits.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    SFTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    
+    TwitterItem *twitterItem = [self.timeline.twits objectAtIndex:indexPath.row];
+    [cell setTwitterItem:twitterItem];
+    CGSize size = [cell systemLayoutSizeFittingSize:(CGSize){tableView.frame.size.width,10}
+                      withHorizontalFittingPriority:UILayoutPriorityRequired
+                            verticalFittingPriority:UILayoutPriorityDefaultLow];
+    return size.height;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    SFTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    
+    TwitterItem *twitterItem = [self.timeline.twits objectAtIndex:indexPath.row];
+    [cell setTwitterItem:twitterItem];
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    TwitterItem *twitterItem = [self.timeline.twits objectAtIndex:indexPath.row];
+    if (![self.userName isEqualToString:twitterItem.screen_name]) {
+        SFTimeLineViewController *nextViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SFTimeLineViewController"];
+        nextViewController.userName = twitterItem.screen_name;
+        
+        [self.navigationController pushViewController:nextViewController animated:YES];
+    }
 }
 
 @end

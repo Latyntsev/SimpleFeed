@@ -18,6 +18,7 @@
 @dynamic text;
 @dynamic screen_name;
 @dynamic profile_image_url;
+@dynamic name;
 @dynamic timeline;
 
 @end
