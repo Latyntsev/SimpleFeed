@@ -14,6 +14,7 @@
 @implementation SFTimeLineCell
 
 - (void)setTwitterItem:(TwitterItem *)twitterItem forSizing:(BOOL)forSizing {
+    
     self.nameLabel.text = twitterItem.name;
     self.screenNameLabel.text = [NSString stringWithFormat:@"@%@",twitterItem.screen_name];
     self.statusLabel.text = twitterItem.text;
@@ -24,22 +25,23 @@
         df.dateStyle = NSDateFormatterShortStyle;
     }
     self.dateLabel.text = [df stringFromDate:twitterItem.created_at];
-    
+    self.logoImageView.image = nil;
     
     if (!forSizing) {
         __weak NSString *theLink = twitterItem.profile_image_url;
+        __weak typeof(self) wself = self;
         [self.dataAccessLayer downloadImageWithLink:theLink complitionBlock:^(UIImage *image, NSString *link, NSTimeInterval loadingDuration) {
             if (![theLink isEqualToString:link]) {
                 return;
             }
             if (loadingDuration > 0.05) {
-                self.logoImageView.alpha = 0;
+                wself.logoImageView.alpha = 0;
                 [UIView animateWithDuration:0.25 animations:^{
-                    self.logoImageView.alpha = 1;
+                    wself.logoImageView.alpha = 1;
                 }];
             }
             
-            self.logoImageView.image = image;
+            wself.logoImageView.image = image;
             
         }];
     }
