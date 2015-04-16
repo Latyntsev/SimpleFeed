@@ -27,22 +27,22 @@
         self.userName = @"dubizzle";
     }
     
-    self.mask = [CAGradientLayer layer];
+    CAGradientLayer *mask = [CAGradientLayer layer];
     
-    self.mask.frame = self.view.frame;
-    self.mask.colors = [NSArray arrayWithObjects:
+    mask.frame = self.view.frame;
+    mask.colors = [NSArray arrayWithObjects:
                         (id)[UIColor blackColor].CGColor,
                         (id)[UIColor blackColor].CGColor,
                         (id)[UIColor clearColor].CGColor,
                         (id)[UIColor clearColor].CGColor, nil];
-    self.mask.locations = [NSArray arrayWithObjects:
+    mask.locations = [NSArray arrayWithObjects:
                            [NSNumber numberWithFloat:0.0f],
                            [NSNumber numberWithFloat:0.7f],
                            [NSNumber numberWithFloat:0.88],
                            [NSNumber numberWithFloat:1], nil];
     
-    self.mask.startPoint = CGPointZero;
-    self.mask.endPoint = CGPointMake(0, 1);
+    mask.startPoint = CGPointZero;
+    mask.endPoint = CGPointMake(0, 1);
     
     
     self.contentView.layer.mask = self.mask;

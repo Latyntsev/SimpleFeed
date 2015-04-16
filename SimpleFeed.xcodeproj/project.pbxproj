@@ -115,11 +115,11 @@
 		0C04CA8E1ADF9895005A42F8 /* SimpleFeed */ = {
 			isa = PBXGroup;
 			children = (
+				0C04CA931ADF9895005A42F8 /* AppDelegate.h */,
+				0C04CA941ADF9895005A42F8 /* AppDelegate.m */,
 				0C04CADE1AE01480005A42F8 /* Controllers */,
 				0C04CAD21AE006CB005A42F8 /* Model */,
 				0C04CAB81ADF98F6005A42F8 /* DataSource */,
-				0C04CA931ADF9895005A42F8 /* AppDelegate.h */,
-				0C04CA941ADF9895005A42F8 /* AppDelegate.m */,
 				0C04CA9C1ADF9895005A42F8 /* Main.storyboard */,
 				0C04CA9F1ADF9895005A42F8 /* Images.xcassets */,
 				0C04CAA11ADF9895005A42F8 /* LaunchScreen.xib */,
