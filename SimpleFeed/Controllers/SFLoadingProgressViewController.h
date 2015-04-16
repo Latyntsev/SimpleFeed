@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  SFLoadingProgressViewController.h
 //  SimpleFeed
 //
 //  Created by Oleksandr Latyntsev on 4/16/15.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface SFLoadingProgressViewController : UIViewController
 
 @end
-
