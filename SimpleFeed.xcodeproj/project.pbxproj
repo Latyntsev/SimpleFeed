@@ -14,7 +14,11 @@
 		0C04CA9E1ADF9895005A42F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C04CA9C1ADF9895005A42F8 /* Main.storyboard */; };
 		0C04CAA01ADF9895005A42F8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C04CA9F1ADF9895005A42F8 /* Images.xcassets */; };
 		0C04CAA31ADF9895005A42F8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C04CAA11ADF9895005A42F8 /* LaunchScreen.xib */; };
-		0C04CAAF1ADF9895005A42F8 /* SimpleFeedTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAAE1ADF9895005A42F8 /* SimpleFeedTests.m */; };
+		0C04CABB1ADF9904005A42F8 /* SFWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CABA1ADF9904005A42F8 /* SFWebService.m */; };
+		0C04CABE1ADF9913005A42F8 /* SFDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CABD1ADF9913005A42F8 /* SFDataSource.m */; };
+		0C04CAC11ADF9928005A42F8 /* SFDataAccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAC01ADF9928005A42F8 /* SFDataAccessLayer.m */; };
+		0C04CAC31ADF9B4F005A42F8 /* TestCaseSFWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAC21ADF9B4F005A42F8 /* TestCaseSFWebService.m */; };
+		0C04CAC51ADF9B67005A42F8 /* TestCaseSFDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAC41ADF9B67005A42F8 /* TestCaseSFDataSource.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +45,14 @@
 		0C04CAA21ADF9895005A42F8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		0C04CAA81ADF9895005A42F8 /* SimpleFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SimpleFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C04CAAD1ADF9895005A42F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		0C04CAAE1ADF9895005A42F8 /* SimpleFeedTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleFeedTests.m; sourceTree = "<group>"; };
+		0C04CAB91ADF9904005A42F8 /* SFWebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFWebService.h; sourceTree = "<group>"; };
+		0C04CABA1ADF9904005A42F8 /* SFWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFWebService.m; sourceTree = "<group>"; };
+		0C04CABC1ADF9913005A42F8 /* SFDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFDataSource.h; sourceTree = "<group>"; };
+		0C04CABD1ADF9913005A42F8 /* SFDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFDataSource.m; sourceTree = "<group>"; };
+		0C04CABF1ADF9928005A42F8 /* SFDataAccessLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFDataAccessLayer.h; sourceTree = "<group>"; };
+		0C04CAC01ADF9928005A42F8 /* SFDataAccessLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFDataAccessLayer.m; sourceTree = "<group>"; };
+		0C04CAC21ADF9B4F005A42F8 /* TestCaseSFWebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCaseSFWebService.m; sourceTree = "<group>"; };
+		0C04CAC41ADF9B67005A42F8 /* TestCaseSFDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCaseSFDataSource.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +94,7 @@
 		0C04CA8E1ADF9895005A42F8 /* SimpleFeed */ = {
 			isa = PBXGroup;
 			children = (
+				0C04CAB81ADF98F6005A42F8 /* DataSource */,
 				0C04CA931ADF9895005A42F8 /* AppDelegate.h */,
 				0C04CA941ADF9895005A42F8 /* AppDelegate.m */,
 				0C04CA991ADF9895005A42F8 /* ViewController.h */,
@@ -108,8 +120,9 @@
 		0C04CAAB1ADF9895005A42F8 /* SimpleFeedTests */ = {
 			isa = PBXGroup;
 			children = (
-				0C04CAAE1ADF9895005A42F8 /* SimpleFeedTests.m */,
 				0C04CAAC1ADF9895005A42F8 /* Supporting Files */,
+				0C04CAC21ADF9B4F005A42F8 /* TestCaseSFWebService.m */,
+				0C04CAC41ADF9B67005A42F8 /* TestCaseSFDataSource.m */,
 			);
 			path = SimpleFeedTests;
 			sourceTree = "<group>";
@@ -120,6 +133,19 @@
 				0C04CAAD1ADF9895005A42F8 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0C04CAB81ADF98F6005A42F8 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				0C04CAB91ADF9904005A42F8 /* SFWebService.h */,
+				0C04CABA1ADF9904005A42F8 /* SFWebService.m */,
+				0C04CABC1ADF9913005A42F8 /* SFDataSource.h */,
+				0C04CABD1ADF9913005A42F8 /* SFDataSource.m */,
+				0C04CABF1ADF9928005A42F8 /* SFDataAccessLayer.h */,
+				0C04CAC01ADF9928005A42F8 /* SFDataAccessLayer.m */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +249,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C04CA951ADF9895005A42F8 /* AppDelegate.m in Sources */,
+				0C04CABE1ADF9913005A42F8 /* SFDataSource.m in Sources */,
+				0C04CAC11ADF9928005A42F8 /* SFDataAccessLayer.m in Sources */,
+				0C04CABB1ADF9904005A42F8 /* SFWebService.m in Sources */,
 				0C04CA921ADF9895005A42F8 /* main.m in Sources */,
 				0C04CA9B1ADF9895005A42F8 /* ViewController.m in Sources */,
 				0C04CA981ADF9895005A42F8 /* SimpleFeed.xcdatamodeld in Sources */,
@@ -233,7 +262,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C04CAAF1ADF9895005A42F8 /* SimpleFeedTests.m in Sources */,
+				0C04CAC31ADF9B4F005A42F8 /* TestCaseSFWebService.m in Sources */,
+				0C04CAC51ADF9B67005A42F8 /* TestCaseSFDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +448,7 @@
 				0C04CAB41ADF9895005A42F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0C04CAB51ADF9895005A42F8 /* Build configuration list for PBXNativeTarget "SimpleFeedTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +457,7 @@
 				0C04CAB71ADF9895005A42F8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
