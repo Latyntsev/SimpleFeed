@@ -55,7 +55,7 @@
 
 - (void)test_getTwitterFeedForUser_count_complitionBlock {
     
-    [self.instance getTwitterFeedForUser:@"latyntsev" count:12 token:@"" complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
+    [self.instance getTwitterFeedForUser:@"dubizzle" count:12 token:@"" complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
         XCTAssert(data);
         XCTAssertNil(error);
         XCTAssert(request);

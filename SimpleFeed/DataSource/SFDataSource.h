@@ -21,6 +21,6 @@ typedef void(^SFDataSourceGetFeedComplitionBlock)(NSArray *data,NSError *error);
 
 - (void)authorizeWithKey:(NSString *)key andSecret:(NSString *)secret complitionBlock:(SFDataSourceAuthorizeComplitionBlock)complitionBlock;
 
-- (void)getFeedWithComplitionBlock:(SFDataSourceGetFeedComplitionBlock)complitionBlock;
+- (void)getFeedForUser:(NSString *)user withComplitionBlock:(SFDataSourceGetFeedComplitionBlock)complitionBlock;
 
 @end

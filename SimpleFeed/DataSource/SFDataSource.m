@@ -51,11 +51,15 @@
 }
 
 - (BOOL)isAutorized {
-    return self.accessToken != nil;
+    return self.accessToken.length > 0;
 }
 
 - (void)authorizeWithKey:(NSString *)key andSecret:(NSString *)secret complitionBlock:(SFDataSourceAuthorizeComplitionBlock)complitionBlock {
+    
+    NSAssert(key, @"key is required");
+    NSAssert(secret, @"secret is required");
     NSString *domain = @"app.dataSource.authorize";
+    self.accessToken = nil;
     [self.webService authorizeWithKey:key andSecret:secret complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
         
         __block id object = nil;
@@ -86,14 +90,16 @@
         if (!error) {
             self.accessToken = object[@"access_token"];
         }
-        
-        complitionBlock(error);
+        if (complitionBlock) {
+            complitionBlock(error);
+        }
     }];
 }
 
-- (void)getFeedWithComplitionBlock:(SFDataSourceGetFeedComplitionBlock)complitionBlock {
+- (void)getFeedForUser:(NSString *)user withComplitionBlock:(SFDataSourceGetFeedComplitionBlock)complitionBlock {
     
-    [self.webService getTwitterFeedForUser:@"latyntsev" count:10 token:self.accessToken complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
+    NSAssert(user, @"user is required");
+    [self.webService getTwitterFeedForUser:user count:100 token:self.accessToken complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
         __block id object = nil;
         
         if (!error) {
@@ -104,8 +110,9 @@
             }];
             error = theParsingError;
         }
-        
-        complitionBlock(object,error);
+        if (complitionBlock) {
+            complitionBlock(object,error);
+        }
     }];
 }
 

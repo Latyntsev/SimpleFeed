@@ -7,10 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+@class NSManagedObjectContext;
 @class SFDataSource;
+@class Timeline;
 
 @interface SFDataAccessLayer : NSObject
 
-- (instancetype)initWithDataSource:(SFDataSource *)dataSource;
+typedef NS_ENUM(NSInteger, SFResponseStatus) {
+    SFResponseStatus_cachedData, //will be an other response
+    SFResponseStatus_finalResponse //actual data
+};
+
+- (instancetype)initWithDataSource:(SFDataSource *)dataSource andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
+- (NSOperationQueue *)queue;
+
+typedef void(^SFDataAccessLayerGetFeedComplitionBlock)(Timeline *timeline, NSError *error, SFResponseStatus responseStatus);
+
+- (NSOperation *)getFeedForUser:(NSString *)user withComplitionBlock:(SFDataAccessLayerGetFeedComplitionBlock)complitionBlock;
 
 @end

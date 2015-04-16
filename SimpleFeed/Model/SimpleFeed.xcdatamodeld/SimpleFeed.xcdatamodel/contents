@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D131" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Timeline" representedClassName="Timeline" syncable="YES">
+        <attribute name="screenName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="twits" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TwitterItem" inverseName="timeline" inverseEntity="TwitterItem" syncable="YES"/>
+    </entity>
+    <entity name="TwitterItem" representedClassName="TwitterItem" syncable="YES">
+        <relationship name="timeline" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Timeline" inverseName="twits" inverseEntity="Timeline" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Timeline" positionX="-54" positionY="-9" width="128" height="75"/>
+        <element name="TwitterItem" positionX="-63" positionY="-18" width="128" height="60"/>
+    </elements>
+</model>
