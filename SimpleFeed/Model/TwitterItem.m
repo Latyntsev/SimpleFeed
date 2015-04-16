@@ -12,6 +12,12 @@
 
 @implementation TwitterItem
 
+@dynamic created_at;
+@dynamic favorite_count;
+@dynamic retweet_count;
+@dynamic text;
+@dynamic screen_name;
+@dynamic profile_image_url;
 @dynamic timeline;
 
 @end

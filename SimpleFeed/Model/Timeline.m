@@ -7,6 +7,7 @@
 //
 
 #import "Timeline.h"
+#import "TwitterItem.h"
 
 
 @implementation Timeline

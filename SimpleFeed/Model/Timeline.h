@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class TwitterItem;
 
 @interface Timeline : NSManagedObject
 
@@ -18,14 +19,14 @@
 
 @interface Timeline (CoreDataGeneratedAccessors)
 
-- (void)insertObject:(NSManagedObject *)value inTwitsAtIndex:(NSUInteger)idx;
+- (void)insertObject:(TwitterItem *)value inTwitsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromTwitsAtIndex:(NSUInteger)idx;
 - (void)insertTwits:(NSArray *)value atIndexes:(NSIndexSet *)indexes;
 - (void)removeTwitsAtIndexes:(NSIndexSet *)indexes;
-- (void)replaceObjectInTwitsAtIndex:(NSUInteger)idx withObject:(NSManagedObject *)value;
+- (void)replaceObjectInTwitsAtIndex:(NSUInteger)idx withObject:(TwitterItem *)value;
 - (void)replaceTwitsAtIndexes:(NSIndexSet *)indexes withTwits:(NSArray *)values;
-- (void)addTwitsObject:(NSManagedObject *)value;
-- (void)removeTwitsObject:(NSManagedObject *)value;
+- (void)addTwitsObject:(TwitterItem *)value;
+- (void)removeTwitsObject:(TwitterItem *)value;
 - (void)addTwits:(NSOrderedSet *)values;
 - (void)removeTwits:(NSOrderedSet *)values;
 @end

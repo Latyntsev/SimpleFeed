@@ -5,10 +5,16 @@
         <relationship name="twits" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="TwitterItem" inverseName="timeline" inverseEntity="TwitterItem" syncable="YES"/>
     </entity>
     <entity name="TwitterItem" representedClassName="TwitterItem" syncable="YES">
+        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="favorite_count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="profile_image_url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="retweet_count" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="screen_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="timeline" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Timeline" inverseName="twits" inverseEntity="Timeline" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Timeline" positionX="-54" positionY="-9" width="128" height="75"/>
-        <element name="TwitterItem" positionX="-63" positionY="-18" width="128" height="60"/>
+        <element name="Timeline" positionX="-54" positionY="-9" width="128" height="73"/>
+        <element name="TwitterItem" positionX="-63" positionY="-18" width="128" height="148"/>
     </elements>
 </model>
