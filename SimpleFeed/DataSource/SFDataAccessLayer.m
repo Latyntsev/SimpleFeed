@@ -30,6 +30,7 @@ NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
     self = [super init];
     if (self) {
         self.dataSource = dataSource;
+        self.managedObjectContext = managedObjectContext;
     }
     return self;
 }
@@ -107,25 +108,25 @@ NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
                 
                 if (!error) {
-                    
-
                     if (!timeline) {
                         timeline = [NSEntityDescription insertNewObjectForEntityForName:@"Timeline"
                                                                  inManagedObjectContext:wself.managedObjectContext];
                         timeline.screenName = user;
                     } else {
-                        [timeline removeTwits:timeline.twits];
+                        for (TwitterItem *object in timeline.twits) {
+                            
+                            [wself.managedObjectContext deleteObject:object];
+                        }
                     }
 
-                    
                     for (NSDictionary *twitData in data) {
                         TwitterItem *twitterItem = [NSEntityDescription insertNewObjectForEntityForName:@"TwitterItem"
                                                                                  inManagedObjectContext:wself.managedObjectContext];
                         
-                        [timeline addTwitsObject:twitterItem];
+                        twitterItem.timeline = timeline;
                     }
                     
-                    
+                    [wself.managedObjectContext save:&theError];
                 }
                 
                 if (wblockOperation.cancelled) {

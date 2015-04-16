@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@class SFDataAccessLayer;
+@class AppDelegate;
 
 @interface SFViewController : UIViewController
 
 - (void)showLoadingProgress:(BOOL)show;
+
+- (AppDelegate *)appDelegate;
+- (SFDataAccessLayer *)dataAccessLayer;
 
 @end
