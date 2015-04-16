@@ -12,6 +12,10 @@
 #import "SFDataSource.h"
 #import "SFWebService.h"
 
+extern NSString *const twitterLink;
+extern NSString *const key;
+extern NSString *const secret;
+
 @interface TestCaseSFDataAccessLayer : XCTestCase
 
 @property (nonatomic,strong) SFDataAccessLayer *instance;
@@ -24,7 +28,9 @@
     [super setUp];
     SFWebService *webService = [[SFWebService alloc] init];
     SFDataSource *dataSource = [[SFDataSource alloc] initWithWebServer:webService];
-    self.instance = [[SFDataAccessLayer alloc] initWithDataSource:dataSource andManagedObjectContext:nil];
+    self.instance = [[SFDataAccessLayer alloc] initWithDataSource:dataSource
+                                          andManagedObjectContext:nil key:key
+                                                           secret:secret];
 }
 
 - (void)test_asd {

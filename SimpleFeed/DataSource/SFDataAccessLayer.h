@@ -19,7 +19,10 @@ typedef NS_ENUM(NSInteger, SFResponseStatus) {
     SFResponseStatus_finalResponse //actual data
 };
 
-- (instancetype)initWithDataSource:(SFDataSource *)dataSource andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (instancetype)initWithDataSource:(SFDataSource *)dataSource
+           andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+                               key:(NSString *)key
+                            secret:(NSString *)secret;
 
 - (NSOperationQueue *)queue;
 

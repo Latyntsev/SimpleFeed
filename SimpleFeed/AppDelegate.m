@@ -11,6 +11,12 @@
 #import "SFDataSource.h"
 #import "SFWebService.h"
 
+NSString *const twitterLink = @"https://api.twitter.com/";
+
+//this key don't have any value. This is snadbox project
+NSString *const key = @"hws3MrA6qCOp0Mc9o0BgxA";
+NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
+
 @interface AppDelegate ()
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -56,12 +62,14 @@
 - (SFDataAccessLayer *)dataAccessLayer {
     
     if (!_dataAccessLayer) {
-        NSString *link = @"https://api.twitter.com/";
+        NSString *link = twitterLink;
         NSURL *url = [NSURL URLWithString:link];
         SFWebService *webService = [[SFWebService alloc] initWithServiceURL:url];
         SFDataSource *dataSource = [[SFDataSource alloc] initWithWebServer:webService];
         _dataAccessLayer = [[SFDataAccessLayer alloc] initWithDataSource:dataSource
-                                                                   andManagedObjectContext:self.managedObjectContext];
+                                                                   andManagedObjectContext:self.managedObjectContext
+                                                                     key:key
+                                                                  secret:secret];
     }
     return _dataAccessLayer;
 }

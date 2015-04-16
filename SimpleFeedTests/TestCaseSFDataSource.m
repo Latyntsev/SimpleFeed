@@ -10,6 +10,9 @@
 #import <XCTest/XCTest.h>
 #import "SFDataSource.h"
 #import "SFWebService.h"
+extern NSString *const twitterLink;
+extern NSString *const key;
+extern NSString *const secret;
 
 @interface TestCaseSFDataSource : XCTestCase
 
@@ -38,9 +41,6 @@
 
 - (void)test_authorizeWithKey_andSecret_complitionBlock {
     
-    NSString *key = @"hws3MrA6qCOp0Mc9o0BgxA";
-    NSString *secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
-    
     [self.instance authorizeWithKey:key andSecret:secret complitionBlock:^(NSError *error) {
         XCTAssertNil(error);
     }];
@@ -49,9 +49,6 @@
 }
 
 - (void)test_authorize {
-    
-    NSString *key = @"hws3MrA6qCOp0Mc9o0BgxA";
-    NSString *secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
     
     XCTAssertFalse(self.instance.isAutorized);
     [self.instance authorizeWithKey:key andSecret:key complitionBlock:nil];

@@ -11,9 +11,6 @@
 #import "SFModel.h"
 #import <UIKit/UIKit.h>
 
-NSString *const key = @"hws3MrA6qCOp0Mc9o0BgxA";
-NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
-
 @interface SFLoadingImageItem : NSObject
 
 @property (nonatomic,copy) DownloadImageComplitionBlock complitionBlock;
@@ -42,18 +39,26 @@ NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
 @property (nonatomic,strong) NSMutableDictionary *loadingImageStack;
 @property (nonatomic,strong) NSCache *imageCache;
 
+@property (nonatomic,strong) NSString *key;
+@property (nonatomic,strong) NSString *secret;
+
 
 @end
 
 @implementation SFDataAccessLayer
 
-- (instancetype)initWithDataSource:(SFDataSource *)dataSource andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+- (instancetype)initWithDataSource:(SFDataSource *)dataSource
+           andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+                               key:(NSString *)key
+                            secret:(NSString *)secret {
     
     NSAssert(dataSource, @"data Source is required");
     self = [super init];
     if (self) {
         self.dataSource = dataSource;
         self.managedObjectContext = managedObjectContext;
+        self.key = key;
+        self.secret = secret;
     }
     return self;
 }
@@ -104,7 +109,7 @@ NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
         
         
         if (!wself.dataSource.isAutorized) {
-            [wself.dataSource authorizeWithKey:key andSecret:secret complitionBlock:^(NSError *error) {
+            [wself.dataSource authorizeWithKey:self.key andSecret:self.secret complitionBlock:^(NSError *error) {
                 if (error) {
                     theError = error;
                 }

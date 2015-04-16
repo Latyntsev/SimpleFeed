@@ -10,6 +10,10 @@
 #import <XCTest/XCTest.h>
 #import "SFWebService.h"
 
+extern NSString *const twitterLink;
+extern NSString *const key;
+extern NSString *const secret;
+
 @interface SFWebService ()
 
 - (void)executeRequest:(NSURLRequest *)request withComplitionBlock:(SFWebServiceComplitionBlock)complitionBlock;
@@ -19,7 +23,7 @@
 @implementation SFWebService (test)
 
 - (instancetype)init {
-    NSURL *url = [NSURL URLWithString:@"https://api.twitter.com/"];
+    NSURL *url = [NSURL URLWithString:twitterLink];
     return [self initWithServiceURL:url];
 }
 
@@ -41,8 +45,6 @@
 
 - (void)test_authorizeWithKey_andSecret_complitionBlock {
     
-    NSString *key = @"hws3MrA6qCOp0Mc9o0BgxA";
-    NSString *secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
     [self.instance authorizeWithKey:key andSecret:secret complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
         XCTAssert(data);
         XCTAssertNil(error);

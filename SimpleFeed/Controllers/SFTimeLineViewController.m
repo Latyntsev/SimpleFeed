@@ -58,7 +58,7 @@
     SFTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     TwitterItem *twitterItem = [self.timeline.twits objectAtIndex:indexPath.row];
-    [cell setTwitterItem:twitterItem];
+    [cell setTwitterItem:twitterItem forSizing:YES];
     CGSize size = [cell systemLayoutSizeFittingSize:(CGSize){tableView.frame.size.width,10}
                       withHorizontalFittingPriority:UILayoutPriorityRequired
                             verticalFittingPriority:UILayoutPriorityDefaultLow];
