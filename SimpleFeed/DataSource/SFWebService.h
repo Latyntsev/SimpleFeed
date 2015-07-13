@@ -18,4 +18,6 @@ typedef void(^SFWebServiceComplitionBlock)(NSData *data,NSError *error, NSURLReq
 
 - (void)getTwitterFeedForUser:(NSString *)user count:(NSInteger)count token:(NSString *)token complitionBlock:(SFWebServiceComplitionBlock)complitionBlock;
 
+- (void)getTwitterUserInfo:(NSString *)user token:(NSString *)token complitionBlock:(SFWebServiceComplitionBlock)complitionBlock;
+
 @end

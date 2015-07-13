@@ -116,4 +116,24 @@
     }];
 }
 
+- (void)getUserInfo:(NSString *)user withComplitionBlock:(SFDataSourcegetUserInfoComplitionBlock)complitionBlock {
+    
+    NSAssert(user, @"user is required");
+    [self.webService getTwitterUserInfo:user token:self.accessToken complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
+        __block id object = nil;
+        
+        if (!error) {
+            __block NSError *theParsingError = nil;
+            [self parseData:data andComplitionBlock:^(id jsonObject, NSError *parsingError) {
+                object = jsonObject;
+                theParsingError = parsingError;
+            }];
+            error = theParsingError;
+        }
+        if (complitionBlock) {
+            complitionBlock(object,error);
+        }
+    }];
+}
+
 @end

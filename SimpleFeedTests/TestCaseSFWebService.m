@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 #import "SFWebService.h"
-
-extern NSString *const twitterLink;
-extern NSString *const key;
-extern NSString *const secret;
+#import "SFConfiguration.h"
 
 @interface SFWebService ()
 
@@ -45,25 +42,49 @@ extern NSString *const secret;
 
 - (void)test_authorizeWithKey_andSecret_complitionBlock {
     
-    [self.instance authorizeWithKey:key andSecret:secret complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
+    __block BOOL executed = false;
+    [self.instance authorizeWithKey:twitterKey andSecret:twitterSecret complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
+        executed = true;
         XCTAssert(data);
         XCTAssertNil(error);
         XCTAssert(request);
         XCTAssert(response);
     }];
     
-    [self.instance authorizeWithKey:key andSecret:secret complitionBlock:nil];
+    XCTAssertTrue(executed);
+    
+    [self.instance authorizeWithKey:twitterKey andSecret:twitterSecret complitionBlock:nil];
 }
 
 - (void)test_getTwitterFeedForUser_count_complitionBlock {
     
-    [self.instance getTwitterFeedForUser:@"dubizzle" count:12 token:@"" complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
+    
+    __block BOOL executed = false;
+    [self.instance getTwitterFeedForUser:kDefaultUserName count:12 token:@"" complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
+        executed = true;
+        XCTAssert(data);
+        XCTAssertNil(error);
+        XCTAssert(request);
+        XCTAssert(response);
+    }];
+    XCTAssertTrue(executed);
+}
+
+- (void)test_getTwitterUserInfo_token_complitionBlock {
+    
+    __block BOOL executed = false;
+    [self.instance getTwitterUserInfo:kDefaultUserName token:@"" complitionBlock:^(NSData *data, NSError *error, NSURLRequest *request, NSURLResponse *response) {
+        executed = true;
+        
         XCTAssert(data);
         XCTAssertNil(error);
         XCTAssert(request);
         XCTAssert(response);
     }];
     
+    XCTAssertTrue(executed);
+    
+    [self.instance getTwitterUserInfo:kDefaultUserName token:@"" complitionBlock:nil];
 }
 
 @end

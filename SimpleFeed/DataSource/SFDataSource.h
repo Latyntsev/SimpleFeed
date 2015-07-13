@@ -14,6 +14,7 @@
 
 typedef void(^SFDataSourceAuthorizeComplitionBlock)(NSError *error);
 typedef void(^SFDataSourceGetFeedComplitionBlock)(NSArray *data,NSError *error);
+typedef void(^SFDataSourcegetUserInfoComplitionBlock)(NSDictionary *data,NSError *error);
 
 - (instancetype)initWithWebServer:(SFWebService *)webService;
 
@@ -22,5 +23,7 @@ typedef void(^SFDataSourceGetFeedComplitionBlock)(NSArray *data,NSError *error);
 - (void)authorizeWithKey:(NSString *)key andSecret:(NSString *)secret complitionBlock:(SFDataSourceAuthorizeComplitionBlock)complitionBlock;
 
 - (void)getFeedForUser:(NSString *)user withComplitionBlock:(SFDataSourceGetFeedComplitionBlock)complitionBlock;
+
+- (void)getUserInfo:(NSString *)user withComplitionBlock:(SFDataSourcegetUserInfoComplitionBlock)complitionBlock;
 
 @end

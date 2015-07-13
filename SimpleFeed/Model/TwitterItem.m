@@ -7,11 +7,12 @@
 //
 
 #import "TwitterItem.h"
-#import "Timeline.h"
+#import "Profile.h"
 
 
 @implementation TwitterItem
 
+@dynamic identifier;
 @dynamic created_at;
 @dynamic favorite_count;
 @dynamic retweet_count;
@@ -19,6 +20,6 @@
 @dynamic screen_name;
 @dynamic profile_image_url;
 @dynamic name;
-@dynamic timeline;
+@dynamic profile;
 
 @end

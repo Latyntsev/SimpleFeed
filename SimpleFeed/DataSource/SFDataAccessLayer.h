@@ -9,15 +9,11 @@
 #import <Foundation/Foundation.h>
 @class NSManagedObjectContext;
 @class SFDataSource;
-@class Timeline;
+@class Profile;
 @class UIImage;
+@class NSFetchRequest;
 
 @interface SFDataAccessLayer : NSObject
-
-typedef NS_ENUM(NSInteger, SFResponseStatus) {
-    SFResponseStatus_cachedData, //will be an other response
-    SFResponseStatus_finalResponse //actual data
-};
 
 - (instancetype)initWithDataSource:(SFDataSource *)dataSource
            andManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
@@ -25,11 +21,16 @@ typedef NS_ENUM(NSInteger, SFResponseStatus) {
                             secret:(NSString *)secret;
 
 - (NSOperationQueue *)queue;
+- (NSManagedObjectContext *)managedObjectContext;
 
-typedef void(^SFDataAccessLayerGetFeedComplitionBlock)(Timeline *timeline, NSError *error, SFResponseStatus responseStatus);
+
+typedef void(^SFDataAccessLayerGetFeedComplitionBlock)(Profile *timeline, NSError *error);
 - (NSOperation *)getFeedForUser:(NSString *)user withComplitionBlock:(SFDataAccessLayerGetFeedComplitionBlock)complitionBlock;
 
-typedef void(^DownloadImageComplitionBlock)(UIImage *image, NSString *link, NSTimeInterval loadingDuration);
+typedef void(^DownloadImageComplitionBlock)(UIImage *image, NSString *link, BOOL isCacheValue);
 - (void)downloadImageWithLink:(NSString *)link complitionBlock:(DownloadImageComplitionBlock)complitionBlock;
+
+- (NSFetchRequest *)fetchRequestProfileByUserName:(NSString *)userName;
+- (NSFetchRequest *)fetchRequestTwitterItemForUserName:(NSString *)userName;
 
 @end

@@ -13,8 +13,9 @@
 
 @implementation SFTimeLineCell
 
-- (void)setTwitterItem:(TwitterItem *)twitterItem forSizing:(BOOL)forSizing {
-    
+- (void)setTwitterItem:(TwitterItem *)twitterItem {
+
+    _twitterItem = twitterItem;
     self.nameLabel.text = twitterItem.name;
     self.screenNameLabel.text = [NSString stringWithFormat:@"@%@",twitterItem.screen_name];
     self.statusLabel.text = twitterItem.text;
@@ -25,46 +26,6 @@
         df.dateStyle = NSDateFormatterShortStyle;
     }
     self.dateLabel.text = [df stringFromDate:twitterItem.created_at];
-    self.logoImageView.image = nil;
-    
-    if (!forSizing) {
-        __weak NSString *theLink = twitterItem.profile_image_url;
-        __weak typeof(self) wself = self;
-        [self.dataAccessLayer downloadImageWithLink:theLink complitionBlock:^(UIImage *image, NSString *link, NSTimeInterval loadingDuration) {
-            if (![theLink isEqualToString:link]) {
-                return;
-            }
-            if (loadingDuration > 0.05) {
-                wself.logoImageView.alpha = 0;
-                [UIView animateWithDuration:0.25 animations:^{
-                    wself.logoImageView.alpha = 1;
-                }];
-            }
-            
-            wself.logoImageView.image = image;
-            
-        }];
-    }
-
-}
-
-- (void)setTwitterItem:(TwitterItem *)twitterItem {
-    
-    [self setTwitterItem:twitterItem forSizing:NO];
-}
-
-- (void)setLogoImageView:(UIImageView *)logoImageView {
-    _logoImageView = logoImageView;
-    logoImageView.clipsToBounds = YES;
-    logoImageView.layer.cornerRadius = 5;
-}
-
-- (AppDelegate *)appDelegate {
-    return [[UIApplication sharedApplication] delegate];
-}
-
-- (SFDataAccessLayer *)dataAccessLayer {
-    return self.appDelegate.dataAccessLayer;
 }
 
 @end

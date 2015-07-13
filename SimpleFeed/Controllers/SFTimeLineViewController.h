@@ -12,6 +12,7 @@
 
 @property (nonatomic,strong) NSString *userName;
 @property (nonatomic,weak) IBOutlet UITableView *tableView;
-@property (nonatomic,weak) IBOutlet UIView *contentView;
+
+@property (nonatomic,weak) IBOutlet UIView *topBannerMainView;
 
 @end

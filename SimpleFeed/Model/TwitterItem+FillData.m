@@ -17,6 +17,7 @@
         df = [[NSDateFormatter alloc] init];
         df.dateFormat = @"EEE MMM dd HH:mm:ss +zzzz yyyy";
     }
+    self.identifier = [responseData[@"id"] description];
     self.created_at = [df dateFromString:responseData[@"created_at"]];
     self.text = responseData[@"text"];
     self.favorite_count = responseData[@"favorite_count"];

@@ -1,5 +1,5 @@
 //
-//  Timeline.h
+//  Profile.h
 //  SimpleFeed
 //
 //  Created by Oleksandr Latyntsev on 4/16/15.
@@ -11,13 +11,18 @@
 
 @class TwitterItem;
 
-@interface Timeline : NSManagedObject
+@interface Profile : NSManagedObject
 
 @property (nonatomic, retain) NSString * screenName;
+@property (nonatomic, retain) NSString * descr;
+@property (nonatomic, retain) NSString * location;
+@property (nonatomic, retain) NSString * profileBannerURL;
+@property (nonatomic, retain) NSString * profileImageURL;
+
 @property (nonatomic, retain) NSOrderedSet *twits;
 @end
 
-@interface Timeline (CoreDataGeneratedAccessors)
+@interface Profile (CoreDataGeneratedAccessors)
 
 - (void)insertObject:(TwitterItem *)value inTwitsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromTwitsAtIndex:(NSUInteger)idx;

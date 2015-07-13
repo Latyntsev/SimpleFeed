@@ -11,10 +11,7 @@
 #import "SFDataAccessLayer.h"
 #import "SFDataSource.h"
 #import "SFWebService.h"
-
-extern NSString *const twitterLink;
-extern NSString *const key;
-extern NSString *const secret;
+#import "SFConfiguration.h"
 
 @interface TestCaseSFDataAccessLayer : XCTestCase
 
@@ -29,12 +26,13 @@ extern NSString *const secret;
     SFWebService *webService = [[SFWebService alloc] init];
     SFDataSource *dataSource = [[SFDataSource alloc] initWithWebServer:webService];
     self.instance = [[SFDataAccessLayer alloc] initWithDataSource:dataSource
-                                          andManagedObjectContext:nil key:key
-                                                           secret:secret];
+                                          andManagedObjectContext:nil
+                                                              key:twitterKey
+                                                           secret:twitterSecret];
 }
 
 - (void)test_asd {
-    [self.instance getFeedForUser:@"dubizzle" withComplitionBlock:^(Timeline *timeline, NSError *error, SFResponseStatus responseStatus) {
+    [self.instance getFeedForUser:kDefaultUserName withComplitionBlock:^(Profile *timeline, NSError *error) {
         
     }];
 }

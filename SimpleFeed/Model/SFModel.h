@@ -10,7 +10,8 @@
 #define SimpleFeed_SFModel_h
 
 #import "TwitterItem.h"
-#import "Timeline.h"
+#import "Profile.h"
 #import "TwitterItem+FillData.h"
+#import "Profile+FillData.h"
 
 #endif
