@@ -13,6 +13,7 @@
 
 @interface TwitterItem : NSManagedObject
 
+@property (nonatomic, retain) NSString * identifier;
 @property (nonatomic, retain) NSDate * created_at;
 @property (nonatomic, retain) NSNumber * favorite_count;
 @property (nonatomic, retain) NSNumber * retweet_count;
