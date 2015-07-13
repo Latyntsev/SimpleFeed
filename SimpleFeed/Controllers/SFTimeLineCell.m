@@ -55,8 +55,10 @@
 
 - (void)setLogoImageView:(UIImageView *)logoImageView {
     _logoImageView = logoImageView;
-    logoImageView.clipsToBounds = YES;
-    logoImageView.layer.cornerRadius = 5;
+    
+    CAShapeLayer *mask = [CAShapeLayer layer];
+    mask.path = [[UIBezierPath bezierPathWithOvalInRect:logoImageView.bounds] CGPath];
+    logoImageView.layer.mask = mask;
 }
 
 - (AppDelegate *)appDelegate {

@@ -87,7 +87,7 @@
                                                         <constraint firstItem="NMR-0P-Y6L" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oiw-JZ-Wkk" secondAttribute="trailing" constant="10" id="Nh4-ul-kpO"/>
                                                         <constraint firstItem="NMR-0P-Y6L" firstAttribute="centerY" secondItem="oiw-JZ-Wkk" secondAttribute="centerY" id="SoC-U4-3Yk"/>
                                                         <constraint firstItem="6Wt-u7-fhD" firstAttribute="leading" secondItem="nCt-SQ-a7v" secondAttribute="leading" id="brj-HJ-k8U"/>
-                                                        <constraint firstItem="6Wt-u7-fhD" firstAttribute="leading" secondItem="BIH-JN-xsR" secondAttribute="leading" constant="8" id="eWY-N2-kob"/>
+                                                        <constraint firstItem="6Wt-u7-fhD" firstAttribute="leading" secondItem="BIH-JN-xsR" secondAttribute="leadingMargin" id="eWY-N2-kob"/>
                                                         <constraint firstItem="z1j-yK-E04" firstAttribute="leading" secondItem="oiw-JZ-Wkk" secondAttribute="leading" id="g6L-PF-Nri"/>
                                                         <constraint firstItem="6Wt-u7-fhD" firstAttribute="top" secondItem="oiw-JZ-Wkk" secondAttribute="top" id="hG5-41-h5w"/>
                                                         <constraint firstItem="z1j-yK-E04" firstAttribute="top" secondItem="oiw-JZ-Wkk" secondAttribute="bottom" id="iCP-kN-aqA"/>
