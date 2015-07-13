@@ -11,25 +11,6 @@
 #import "SFModel.h"
 #import <UIKit/UIKit.h>
 
-@interface SFLoadingImageItem : NSObject
-
-@property (nonatomic,copy) DownloadImageComplitionBlock complitionBlock;
-@property (nonatomic,strong) NSDate *dateAdded;
-@property (nonatomic,strong) NSString *link;
-
-
-- (void)executeBlockForImage:(UIImage *)image;
-
-@end
-
-@implementation SFLoadingImageItem
-
-- (void)executeBlockForImage:(UIImage *)image {
-    self.complitionBlock(image,self.link,[[NSDate date] timeIntervalSinceDate:self.dateAdded]);
-}
-
-@end
-
 @interface SFDataAccessLayer ()
 
 @property (nonatomic,strong) SFDataSource *dataSource;
@@ -184,10 +165,14 @@
         self.imageCache = [[NSCache alloc] init];
     }
     
+    if (!link) {
+        complitionBlock(nil,link,false);
+        return;
+    }
     
     UIImage *image = [self.imageCache objectForKey:link];
-    if (image || !link) {
-        complitionBlock(image,link,0);
+    if (image) {
+        complitionBlock(image,link,true);
         return;
     }
     
@@ -201,10 +186,6 @@
         [self.loadingImageStack setValue:listOfRequests forKey:link];
     }
     
-    SFLoadingImageItem *requestItem = [[SFLoadingImageItem alloc] init];
-    requestItem.complitionBlock = complitionBlock;
-    requestItem.dateAdded = [NSDate date];
-    requestItem.link = link;
     
     if (listOfRequests.count == 0) {
         
@@ -220,20 +201,20 @@
                                         scale:[UIScreen mainScreen].scale
                                   orientation:image.imageOrientation];
             
-            if (image) {
-                [wself.imageCache setObject:image forKey:link];
-            }
-            
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                for (SFLoadingImageItem *request in theListOfRequests) {
-                    [request executeBlockForImage:image];
+                if (image) {
+                    [wself.imageCache setObject:image forKey:link];
+                }
+                
+                for (typeof(complitionBlock) theComplitionBlock in theListOfRequests) {
+                    theComplitionBlock(image,link,false);
                 }
                 [theListOfRequests removeAllObjects];
             }];
             
         }];
     }
-    [listOfRequests addObject:requestItem];
+    [listOfRequests addObject:[complitionBlock copy]];
 }
 
 - (NSFetchRequest *)fetchRequestTimelineForUserName:(NSString *)userName {

@@ -82,7 +82,7 @@
     SFTimeLineCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     
     TwitterItem *twitterItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    [cell setTwitterItem:twitterItem forSizing:YES];
+    [cell setTwitterItem:twitterItem];
     CGSize size = [cell systemLayoutSizeFittingSize:(CGSize){tableView.frame.size.width,10}
                       withHorizontalFittingPriority:UILayoutPriorityRequired
                             verticalFittingPriority:UILayoutPriorityDefaultLow];
@@ -94,6 +94,27 @@
     
     TwitterItem *twitterItem = [self.fetchedResultsController objectAtIndexPath:indexPath];
     [cell setTwitterItem:twitterItem];
+    
+    cell.logoImageView.image = nil;
+    
+    NSString *theLink = twitterItem.profile_image_url;
+    __weak typeof(cell) wcell = cell;
+    [self.dataAccessLayer downloadImageWithLink:theLink complitionBlock:^(UIImage *image, NSString *link, BOOL isCacheValue) {
+        if (![cell.twitterItem.profile_image_url isEqualToString:link]) {
+            return;
+        }
+        if (!isCacheValue) {
+            
+            wcell.logoImageView.transform = CGAffineTransformRotate(CGAffineTransformMakeScale(0.1, 0.1), M_PI );
+            
+            [UIView animateWithDuration:1 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:5 options:0 animations:^{
+                wcell.logoImageView.transform = CGAffineTransformMakeScale(1, 1);
+            } completion:nil];
+        }
+        
+        wcell.logoImageView.image = image;
+        
+    }];
     
     return cell;
 }

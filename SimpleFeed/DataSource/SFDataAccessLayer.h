@@ -27,7 +27,7 @@
 typedef void(^SFDataAccessLayerGetFeedComplitionBlock)(Timeline *timeline, NSError *error);
 - (NSOperation *)getFeedForUser:(NSString *)user withComplitionBlock:(SFDataAccessLayerGetFeedComplitionBlock)complitionBlock;
 
-typedef void(^DownloadImageComplitionBlock)(UIImage *image, NSString *link, NSTimeInterval loadingDuration);
+typedef void(^DownloadImageComplitionBlock)(UIImage *image, NSString *link, BOOL isCacheValue);
 - (void)downloadImageWithLink:(NSString *)link complitionBlock:(DownloadImageComplitionBlock)complitionBlock;
 
 - (NSFetchRequest *)fetchRequestTwitterItemForUserName:(NSString *)userName;

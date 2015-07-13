@@ -18,7 +18,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
-- (void)setTwitterItem:(TwitterItem *)twitterItem;
-- (void)setTwitterItem:(TwitterItem *)twitterItem forSizing:(BOOL)forSizing;
+@property (nonatomic,strong) TwitterItem *twitterItem;
 
 @end

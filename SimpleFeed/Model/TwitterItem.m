@@ -12,6 +12,7 @@
 
 @implementation TwitterItem
 
+@dynamic identifier;
 @dynamic created_at;
 @dynamic favorite_count;
 @dynamic retweet_count;
