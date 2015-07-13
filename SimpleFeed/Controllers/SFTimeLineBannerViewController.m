@@ -51,6 +51,10 @@
     
     self.userImageView.alpha = level * 2;
     
+
+    CGFloat value = MAX((level * 4 - 3),0);
+    self.locationLabel.alpha = value;
+    self.descriptionLabel.alpha = value;
 }
 
 @end
