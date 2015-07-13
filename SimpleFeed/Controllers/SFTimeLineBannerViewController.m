@@ -23,7 +23,13 @@
     
     self.locationLabel.text = profile.location;
     self.descriptionLabel.text = profile.descr;
-    [self.dataAccessLayer downloadImageWithLink:profile.profileBannerURL complitionBlock:^(UIImage *image, NSString *link, BOOL isCacheValue) {
+    
+    NSString *profileBannerURL = profile.profileBannerURL;
+    if (profileBannerURL.length == 0) {
+        profileBannerURL = profile.profileImageURL;
+    }
+    
+    [self.dataAccessLayer downloadImageWithLink:profileBannerURL complitionBlock:^(UIImage *image, NSString *link, BOOL isCacheValue) {
         self.backgroundImageView.image = image;
         
         if (!isCacheValue) {
