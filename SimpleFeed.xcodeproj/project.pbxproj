@@ -21,10 +21,13 @@
 		0C04CADD1AE00B11005A42F8 /* TestCaseSFDataAccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CADC1AE00B11005A42F8 /* TestCaseSFDataAccessLayer.m */; };
 		0C04CAE41AE014A9005A42F8 /* SFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAE31AE014A9005A42F8 /* SFViewController.m */; };
 		0C04CAE71AE01706005A42F8 /* SFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAE61AE01706005A42F8 /* SFTimeLineViewController.m */; };
-		0C04CAED1AE023AB005A42F8 /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAEC1AE023AB005A42F8 /* Timeline.m */; };
+		0C04CAED1AE023AB005A42F8 /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAEC1AE023AB005A42F8 /* Profile.m */; };
 		0C04CAF01AE02496005A42F8 /* TwitterItem+FillData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAEF1AE02496005A42F8 /* TwitterItem+FillData.m */; };
 		0C04CAF41AE02ACD005A42F8 /* SFTimeLineCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAF31AE02ACD005A42F8 /* SFTimeLineCell.m */; };
 		0C04CAF71AE03393005A42F8 /* TwitterItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAF61AE03393005A42F8 /* TwitterItem.m */; };
+		0C7391091B5458F900A420FF /* SFTimeLineBannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C7391081B5458F900A420FF /* SFTimeLineBannerViewController.m */; };
+		0C73910D1B545E0E00A420FF /* SFCircleImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C73910C1B545E0E00A420FF /* SFCircleImageView.m */; };
+		0C7391101B5467B800A420FF /* Profile+FillData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C73910F1B5467B800A420FF /* Profile+FillData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,8 +65,8 @@
 		0C04CAE31AE014A9005A42F8 /* SFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFViewController.m; sourceTree = "<group>"; };
 		0C04CAE51AE01706005A42F8 /* SFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTimeLineViewController.h; sourceTree = "<group>"; };
 		0C04CAE61AE01706005A42F8 /* SFTimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTimeLineViewController.m; sourceTree = "<group>"; };
-		0C04CAEB1AE023AB005A42F8 /* Timeline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timeline.h; sourceTree = "<group>"; };
-		0C04CAEC1AE023AB005A42F8 /* Timeline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timeline.m; sourceTree = "<group>"; };
+		0C04CAEB1AE023AB005A42F8 /* Profile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Profile.h; sourceTree = "<group>"; };
+		0C04CAEC1AE023AB005A42F8 /* Profile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Profile.m; sourceTree = "<group>"; };
 		0C04CAEE1AE02496005A42F8 /* TwitterItem+FillData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TwitterItem+FillData.h"; sourceTree = "<group>"; };
 		0C04CAEF1AE02496005A42F8 /* TwitterItem+FillData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TwitterItem+FillData.m"; sourceTree = "<group>"; };
 		0C04CAF11AE024CB005A42F8 /* SFModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFModel.h; sourceTree = "<group>"; };
@@ -72,6 +75,12 @@
 		0C04CAF51AE03393005A42F8 /* TwitterItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterItem.h; sourceTree = "<group>"; };
 		0C04CAF61AE03393005A42F8 /* TwitterItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterItem.m; sourceTree = "<group>"; };
 		0C0617121B541D5200BB609E /* SFConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFConfiguration.h; sourceTree = "<group>"; };
+		0C7391071B5458F900A420FF /* SFTimeLineBannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTimeLineBannerViewController.h; sourceTree = "<group>"; };
+		0C7391081B5458F900A420FF /* SFTimeLineBannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTimeLineBannerViewController.m; sourceTree = "<group>"; };
+		0C73910B1B545E0E00A420FF /* SFCircleImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFCircleImageView.h; sourceTree = "<group>"; };
+		0C73910C1B545E0E00A420FF /* SFCircleImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFCircleImageView.m; sourceTree = "<group>"; };
+		0C73910E1B5467B800A420FF /* Profile+FillData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Profile+FillData.h"; sourceTree = "<group>"; };
+		0C73910F1B5467B800A420FF /* Profile+FillData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Profile+FillData.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +125,7 @@
 				0C0617121B541D5200BB609E /* SFConfiguration.h */,
 				0C04CA931ADF9895005A42F8 /* AppDelegate.h */,
 				0C04CA941ADF9895005A42F8 /* AppDelegate.m */,
+				0C73910A1B545DEA00A420FF /* Components */,
 				0C04CADE1AE01480005A42F8 /* Controllers */,
 				0C04CAD21AE006CB005A42F8 /* Model */,
 				0C04CAB81ADF98F6005A42F8 /* DataSource */,
@@ -172,10 +182,12 @@
 			isa = PBXGroup;
 			children = (
 				0C04CAF11AE024CB005A42F8 /* SFModel.h */,
-				0C04CAEB1AE023AB005A42F8 /* Timeline.h */,
-				0C04CAEC1AE023AB005A42F8 /* Timeline.m */,
+				0C04CAEB1AE023AB005A42F8 /* Profile.h */,
+				0C04CAEC1AE023AB005A42F8 /* Profile.m */,
 				0C04CAF51AE03393005A42F8 /* TwitterItem.h */,
 				0C04CAF61AE03393005A42F8 /* TwitterItem.m */,
+				0C73910E1B5467B800A420FF /* Profile+FillData.h */,
+				0C73910F1B5467B800A420FF /* Profile+FillData.m */,
 				0C04CAEE1AE02496005A42F8 /* TwitterItem+FillData.h */,
 				0C04CAEF1AE02496005A42F8 /* TwitterItem+FillData.m */,
 				0C04CAD31AE006CB005A42F8 /* SimpleFeed.xcdatamodeld */,
@@ -188,12 +200,23 @@
 			children = (
 				0C04CAF21AE02ACD005A42F8 /* SFTimeLineCell.h */,
 				0C04CAF31AE02ACD005A42F8 /* SFTimeLineCell.m */,
+				0C7391071B5458F900A420FF /* SFTimeLineBannerViewController.h */,
+				0C7391081B5458F900A420FF /* SFTimeLineBannerViewController.m */,
 				0C04CAE51AE01706005A42F8 /* SFTimeLineViewController.h */,
 				0C04CAE61AE01706005A42F8 /* SFTimeLineViewController.m */,
 				0C04CAE21AE014A9005A42F8 /* SFViewController.h */,
 				0C04CAE31AE014A9005A42F8 /* SFViewController.m */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0C73910A1B545DEA00A420FF /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0C73910B1B545E0E00A420FF /* SFCircleImageView.h */,
+				0C73910C1B545E0E00A420FF /* SFCircleImageView.m */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,14 +322,17 @@
 				0C04CA951ADF9895005A42F8 /* AppDelegate.m in Sources */,
 				0C04CABE1ADF9913005A42F8 /* SFDataSource.m in Sources */,
 				0C04CAF71AE03393005A42F8 /* TwitterItem.m in Sources */,
+				0C73910D1B545E0E00A420FF /* SFCircleImageView.m in Sources */,
 				0C04CAF41AE02ACD005A42F8 /* SFTimeLineCell.m in Sources */,
 				0C04CAC11ADF9928005A42F8 /* SFDataAccessLayer.m in Sources */,
 				0C04CABB1ADF9904005A42F8 /* SFWebService.m in Sources */,
 				0C04CAD51AE006CB005A42F8 /* SimpleFeed.xcdatamodeld in Sources */,
 				0C04CAE71AE01706005A42F8 /* SFTimeLineViewController.m in Sources */,
-				0C04CAED1AE023AB005A42F8 /* Timeline.m in Sources */,
+				0C7391091B5458F900A420FF /* SFTimeLineBannerViewController.m in Sources */,
+				0C04CAED1AE023AB005A42F8 /* Profile.m in Sources */,
 				0C04CA921ADF9895005A42F8 /* main.m in Sources */,
 				0C04CAE41AE014A9005A42F8 /* SFViewController.m in Sources */,
+				0C7391101B5467B800A420FF /* Profile+FillData.m in Sources */,
 				0C04CAF01AE02496005A42F8 /* TwitterItem+FillData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

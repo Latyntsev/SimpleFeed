@@ -11,12 +11,15 @@
 #import "SFDataAccessLayer.h"
 #import "SFModel.h"
 #import "SFConfiguration.h"
+#import "SFTimeLineBannerViewController.h"
 
 @interface SFTimeLineViewController ()<UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
 
-@property (nonatomic,strong) Timeline *timeline;
 @property (nonatomic,strong) CAGradientLayer *mask;
 @property (nonatomic,strong) NSFetchedResultsController *fetchedResultsController;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *infoViewBottomMarginConstraint;
+@property (nonatomic,strong) SFTimeLineBannerViewController *topBannerViewController;
+
 @end
 
 @implementation SFTimeLineViewController
@@ -24,6 +27,17 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    
+    NSFetchRequest *profileRequest = [self.dataAccessLayer fetchRequestProfileByUserName:self.userName];
+    NSError *theError;
+    NSArray *objects = [self.dataAccessLayer.managedObjectContext executeFetchRequest:profileRequest error:&theError];
+    if (!theError && objects.count > 0) {
+        Profile *profile = [objects firstObject];
+        [self.topBannerViewController setProfile:profile];
+    }
+
+    
     
     NSFetchRequest *request = [self.dataAccessLayer fetchRequestTwitterItemForUserName:self.userName];
     
@@ -37,7 +51,9 @@
     [self.tableView addSubview:refreshController];
     [refreshController addTarget:self action:@selector(refreshControlReloadData:) forControlEvents:UIControlEventValueChanged];
     
+    [refreshController beginRefreshing];
     [self refreshControlReloadData:refreshController];
+    self.tableView.contentInset = UIEdgeInsetsMake(self.topBannerMainView.frame.size.height, 0, 0, 0);
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -45,6 +61,11 @@
     [super viewWillAppear:animated];
 
     self.title = [NSString stringWithFormat:@"@%@",self.userName];
+    
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    
 }
 
 - (void)reloadData {
@@ -56,20 +77,25 @@
 
 -(void)refreshControlReloadData:(UIRefreshControl *)refreshController {
     
-    [refreshController beginRefreshing];
     __weak typeof(self) wself = self;
-    [self.dataAccessLayer getFeedForUser:self.userName withComplitionBlock:^(Timeline *timeline, NSError *error) {
+    [self.dataAccessLayer getFeedForUser:self.userName withComplitionBlock:^(Profile *profile, NSError *error) {
         
         [refreshController endRefreshing];
-        wself.timeline = timeline;
-        
+        [wself.topBannerViewController setProfile:profile];
         [wself reloadData];
-        
+    
     }];
 }
 
-#pragma mark - UITableViewDelegate UITableViewDataSource
+#pragma mark - Navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [super prepareForSegue:segue sender:sender];
+    if ([segue.identifier isEqualToString:@"SFTimeLineBannerViewController"]) {
+        self.topBannerViewController = segue.destinationViewController;
+    }
+}
 
+#pragma mark - UITableViewDelegate UITableViewDataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.fetchedResultsController.sections.count;
 }
@@ -129,6 +155,16 @@
         
         [self.navigationController pushViewController:nextViewController animated:YES];
     }
+}
+
+#pragma mark - UIScrolViewDelegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+    CGFloat value = scrollView.contentOffset.y + scrollView.contentInset.top;
+    self.infoViewBottomMarginConstraint.constant = MAX(value,0);
+    CGFloat level = (self.topBannerViewController.view.frame.size.height - 64) / scrollView.contentInset.top;
+    
+    [self.topBannerViewController setLevel:MIN(MAX(level,0),1)];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

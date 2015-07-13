@@ -32,7 +32,7 @@
 }
 
 - (void)test_asd {
-    [self.instance getFeedForUser:kDefaultUserName withComplitionBlock:^(Timeline *timeline, NSError *error) {
+    [self.instance getFeedForUser:kDefaultUserName withComplitionBlock:^(Profile *timeline, NSError *error) {
         
     }];
 }

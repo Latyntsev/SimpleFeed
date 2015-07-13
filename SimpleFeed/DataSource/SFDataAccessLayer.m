@@ -55,7 +55,7 @@
     
     NSAssert(user,@"user is required");
     
-    SFDataAccessLayerGetFeedComplitionBlock theComplitionBlock = [complitionBlock copy];
+    typeof(complitionBlock) theComplitionBlock = [complitionBlock copy];
     __weak typeof(self) wself = self;
     
     NSBlockOperation *blockOperation = [[NSBlockOperation alloc] init];
@@ -79,6 +79,19 @@
             }];
         }
         
+        if (wblockOperation.cancelled) {
+            return;
+        }
+        
+        __block NSDictionary *userData;
+        [wself.dataSource getUserInfo:user withComplitionBlock:^(NSDictionary *data, NSError *error) {
+            if (error) {
+                theError = error;
+            } else {
+                userData = data;
+            }
+        }];
+        
         
         if (wblockOperation.cancelled) {
             return;
@@ -98,35 +111,39 @@
             if (wblockOperation.cancelled) {
                 return;
             }
+            
+            
             //Main Thread
             [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                Timeline *timeline = nil;
+                Profile *profile = nil;
                 
-                NSFetchRequest *request = [wself fetchRequestTimelineForUserName:user];
+                NSFetchRequest *request = [wself fetchRequestProfileByUserName:user];
                 NSError *theError;
                 NSArray *objects = [wself.managedObjectContext executeFetchRequest:request error:&theError];
                 if (!theError && objects.count > 0) {
-                    timeline = [objects firstObject];
+                    profile = [objects firstObject];
                 }
                 
                 
                 if (!error) {
                     
-                    if (!timeline) {
-                        timeline = [NSEntityDescription insertNewObjectForEntityForName:@"Timeline"
+                    if (!profile) {
+                        profile = [NSEntityDescription insertNewObjectForEntityForName:@"Profile"
                                                                  inManagedObjectContext:wself.managedObjectContext];
                     }
-                    timeline.screenName = user;
+                    
+                    [profile fillDataWithResponse:userData];
+                    profile.screenName = user;
                     
                     
                     NSArray *allIdentifiers = [data valueForKeyPath:@"id.description"];
-                    for (TwitterItem *object in timeline.twits) {
+                    for (TwitterItem *object in profile.twits) {
                         if (![allIdentifiers containsObject:object.identifier]) {
                             [wself.managedObjectContext deleteObject:object];
                         }
                     }
                     
-                    NSArray *allExistIdentifiers = [timeline.twits valueForKeyPath:@"identifier"];
+                    NSArray *allExistIdentifiers = [profile.twits valueForKeyPath:@"identifier"];
 
                     for (NSDictionary *twitData in data) {
                         NSString *identifier = [twitData[@"id"] description];
@@ -136,9 +153,9 @@
                         if (index == NSNotFound) {
                             twitterItem = [NSEntityDescription insertNewObjectForEntityForName:@"TwitterItem"
                                                                         inManagedObjectContext:wself.managedObjectContext];
-                            twitterItem.timeline = timeline;
+                            twitterItem.profile = profile;
                         } else {
-                            twitterItem = timeline.twits[index];
+                            twitterItem = profile.twits[index];
                         }
                         [twitterItem fillDataWithResponse:twitData];
                         
@@ -148,7 +165,7 @@
                 }
                 
                 
-                theComplitionBlock(timeline,error);
+                theComplitionBlock(profile,error);
             }];
             
         }];
@@ -217,9 +234,9 @@
     [listOfRequests addObject:[complitionBlock copy]];
 }
 
-- (NSFetchRequest *)fetchRequestTimelineForUserName:(NSString *)userName {
+- (NSFetchRequest *)fetchRequestProfileByUserName:(NSString *)userName {
     
-    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Timeline"];
+    NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"Profile"];
     request.predicate = [NSPredicate predicateWithFormat:@"screenName ==[c] %@",userName];
     return request;
 }
@@ -227,7 +244,7 @@
 - (NSFetchRequest *)fetchRequestTwitterItemForUserName:(NSString *)userName {
     
     NSFetchRequest *request = [[NSFetchRequest alloc] initWithEntityName:@"TwitterItem"];
-    request.predicate = [NSPredicate predicateWithFormat:@"timeline.screenName =[c] %@",userName];
+    request.predicate = [NSPredicate predicateWithFormat:@"profile.screenName =[c] %@",userName];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"created_at" ascending:NO]];
     return request;
 }

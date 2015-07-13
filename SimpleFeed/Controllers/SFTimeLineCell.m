@@ -28,12 +28,4 @@
     self.dateLabel.text = [df stringFromDate:twitterItem.created_at];
 }
 
-- (void)setLogoImageView:(UIImageView *)logoImageView {
-    _logoImageView = logoImageView;
-    
-    CAShapeLayer *mask = [CAShapeLayer layer];
-    mask.path = [[UIBezierPath bezierPathWithOvalInRect:logoImageView.bounds] CGPath];
-    logoImageView.layer.mask = mask;
-}
-
 @end

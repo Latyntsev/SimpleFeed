@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class NSManagedObjectContext;
 @class SFDataSource;
-@class Timeline;
+@class Profile;
 @class UIImage;
 @class NSFetchRequest;
 
@@ -24,12 +24,13 @@
 - (NSManagedObjectContext *)managedObjectContext;
 
 
-typedef void(^SFDataAccessLayerGetFeedComplitionBlock)(Timeline *timeline, NSError *error);
+typedef void(^SFDataAccessLayerGetFeedComplitionBlock)(Profile *timeline, NSError *error);
 - (NSOperation *)getFeedForUser:(NSString *)user withComplitionBlock:(SFDataAccessLayerGetFeedComplitionBlock)complitionBlock;
 
 typedef void(^DownloadImageComplitionBlock)(UIImage *image, NSString *link, BOOL isCacheValue);
 - (void)downloadImageWithLink:(NSString *)link complitionBlock:(DownloadImageComplitionBlock)complitionBlock;
 
+- (NSFetchRequest *)fetchRequestProfileByUserName:(NSString *)userName;
 - (NSFetchRequest *)fetchRequestTwitterItemForUserName:(NSString *)userName;
 
 @end

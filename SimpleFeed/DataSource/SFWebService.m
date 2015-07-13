@@ -139,4 +139,13 @@
     [self executeRequest:request complitionBlock:complitionBlock];
 }
 
+- (void)getTwitterUserInfo:(NSString *)user token:(NSString *)token complitionBlock:(SFWebServiceComplitionBlock)complitionBlock {
+    
+    NSMutableURLRequest *request = [self requestResource:@"/1.1/users/show.json"
+                                          withParametres:@{@"screen_name":user}];
+    
+    [self addHeaderAuthorization:request withBearerToken:token];
+    [self executeRequest:request complitionBlock:complitionBlock];
+}
+
 @end

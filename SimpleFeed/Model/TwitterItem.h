@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Timeline;
+@class Profile;
 
 @interface TwitterItem : NSManagedObject
 
@@ -21,6 +21,6 @@
 @property (nonatomic, retain) NSString * screen_name;
 @property (nonatomic, retain) NSString * profile_image_url;
 @property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) Timeline *timeline;
+@property (nonatomic, retain) Profile *profile;
 
 @end
