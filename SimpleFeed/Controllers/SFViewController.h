@@ -12,8 +12,6 @@
 
 @interface SFViewController : UIViewController
 
-- (void)showLoadingProgress:(BOOL)show;
-
 - (AppDelegate *)appDelegate;
 - (SFDataAccessLayer *)dataAccessLayer;
 

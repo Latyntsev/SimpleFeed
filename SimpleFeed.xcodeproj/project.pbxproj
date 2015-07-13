@@ -19,7 +19,6 @@
 		0C04CAC51ADF9B67005A42F8 /* TestCaseSFDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAC41ADF9B67005A42F8 /* TestCaseSFDataSource.m */; };
 		0C04CAD51AE006CB005A42F8 /* SimpleFeed.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAD31AE006CB005A42F8 /* SimpleFeed.xcdatamodeld */; };
 		0C04CADD1AE00B11005A42F8 /* TestCaseSFDataAccessLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CADC1AE00B11005A42F8 /* TestCaseSFDataAccessLayer.m */; };
-		0C04CAE11AE0148F005A42F8 /* SFLoadingProgressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAE01AE0148F005A42F8 /* SFLoadingProgressViewController.m */; };
 		0C04CAE41AE014A9005A42F8 /* SFViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAE31AE014A9005A42F8 /* SFViewController.m */; };
 		0C04CAE71AE01706005A42F8 /* SFTimeLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAE61AE01706005A42F8 /* SFTimeLineViewController.m */; };
 		0C04CAED1AE023AB005A42F8 /* Timeline.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C04CAEC1AE023AB005A42F8 /* Timeline.m */; };
@@ -59,8 +58,6 @@
 		0C04CAC41ADF9B67005A42F8 /* TestCaseSFDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCaseSFDataSource.m; sourceTree = "<group>"; };
 		0C04CAD41AE006CB005A42F8 /* SimpleFeed.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SimpleFeed.xcdatamodel; sourceTree = "<group>"; };
 		0C04CADC1AE00B11005A42F8 /* TestCaseSFDataAccessLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCaseSFDataAccessLayer.m; sourceTree = "<group>"; };
-		0C04CADF1AE0148F005A42F8 /* SFLoadingProgressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFLoadingProgressViewController.h; sourceTree = "<group>"; };
-		0C04CAE01AE0148F005A42F8 /* SFLoadingProgressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFLoadingProgressViewController.m; sourceTree = "<group>"; };
 		0C04CAE21AE014A9005A42F8 /* SFViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFViewController.h; sourceTree = "<group>"; };
 		0C04CAE31AE014A9005A42F8 /* SFViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFViewController.m; sourceTree = "<group>"; };
 		0C04CAE51AE01706005A42F8 /* SFTimeLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SFTimeLineViewController.h; sourceTree = "<group>"; };
@@ -74,6 +71,7 @@
 		0C04CAF31AE02ACD005A42F8 /* SFTimeLineCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SFTimeLineCell.m; sourceTree = "<group>"; };
 		0C04CAF51AE03393005A42F8 /* TwitterItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterItem.h; sourceTree = "<group>"; };
 		0C04CAF61AE03393005A42F8 /* TwitterItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterItem.m; sourceTree = "<group>"; };
+		0C0617121B541D5200BB609E /* SFConfiguration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SFConfiguration.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +113,7 @@
 		0C04CA8E1ADF9895005A42F8 /* SimpleFeed */ = {
 			isa = PBXGroup;
 			children = (
+				0C0617121B541D5200BB609E /* SFConfiguration.h */,
 				0C04CA931ADF9895005A42F8 /* AppDelegate.h */,
 				0C04CA941ADF9895005A42F8 /* AppDelegate.m */,
 				0C04CADE1AE01480005A42F8 /* Controllers */,
@@ -191,8 +190,6 @@
 				0C04CAF31AE02ACD005A42F8 /* SFTimeLineCell.m */,
 				0C04CAE51AE01706005A42F8 /* SFTimeLineViewController.h */,
 				0C04CAE61AE01706005A42F8 /* SFTimeLineViewController.m */,
-				0C04CADF1AE0148F005A42F8 /* SFLoadingProgressViewController.h */,
-				0C04CAE01AE0148F005A42F8 /* SFLoadingProgressViewController.m */,
 				0C04CAE21AE014A9005A42F8 /* SFViewController.h */,
 				0C04CAE31AE014A9005A42F8 /* SFViewController.m */,
 			);
@@ -305,7 +302,6 @@
 				0C04CAF41AE02ACD005A42F8 /* SFTimeLineCell.m in Sources */,
 				0C04CAC11ADF9928005A42F8 /* SFDataAccessLayer.m in Sources */,
 				0C04CABB1ADF9904005A42F8 /* SFWebService.m in Sources */,
-				0C04CAE11AE0148F005A42F8 /* SFLoadingProgressViewController.m in Sources */,
 				0C04CAD51AE006CB005A42F8 /* SimpleFeed.xcdatamodeld in Sources */,
 				0C04CAE71AE01706005A42F8 /* SFTimeLineViewController.m in Sources */,
 				0C04CAED1AE023AB005A42F8 /* Timeline.m in Sources */,

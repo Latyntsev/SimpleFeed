@@ -10,7 +10,7 @@
 #import "SFTimeLineCell.h"
 #import "SFDataAccessLayer.h"
 #import "SFModel.h"
-
+#import "SFConfiguration.h"
 
 @interface SFTimeLineViewController ()<UITableViewDelegate, UITableViewDataSource>
 
@@ -23,61 +23,42 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    if (!self.userName) {
-        self.userName = @"dubizzle";
-    }
     
-    CAGradientLayer *mask = [CAGradientLayer layer];
+    UIRefreshControl *refreshController = [[UIRefreshControl alloc] init];
+    [self.tableView addSubview:refreshController];
+    [refreshController addTarget:self action:@selector(refreshControlReloadData:) forControlEvents:UIControlEventValueChanged];
     
-    mask.frame = self.view.frame;
-    mask.colors = [NSArray arrayWithObjects:
-                        (id)[UIColor blackColor].CGColor,
-                        (id)[UIColor blackColor].CGColor,
-                        (id)[UIColor clearColor].CGColor,
-                        (id)[UIColor clearColor].CGColor, nil];
-    mask.locations = [NSArray arrayWithObjects:
-                           [NSNumber numberWithFloat:0.0f],
-                           [NSNumber numberWithFloat:0.7f],
-                           [NSNumber numberWithFloat:0.88],
-                           [NSNumber numberWithFloat:1], nil];
-    
-    mask.startPoint = CGPointZero;
-    mask.endPoint = CGPointMake(0, 1);
-    
-    
-    self.contentView.layer.mask = self.mask;
-
+    [self refreshControlReloadData:refreshController];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    [self showLoadingProgress:YES];
+
     self.title = [NSString stringWithFormat:@"@%@",self.userName];
-    __weak typeof(self) wself = self;
-    
-    [self.dataAccessLayer getFeedForUser:self.userName withComplitionBlock:^(Timeline *timeline, NSError *error, SFResponseStatus responseStatus) {
-        [wself showLoadingProgress:NO];
-        wself.timeline = timeline;
-        
-        [wself reloadData];
-    }];
 }
 
 - (void)reloadData {
+    
     [self.tableView reloadData];
+}
+
+#pragma mark - Actions
+
+-(void)refreshControlReloadData:(UIRefreshControl *)refreshController {
     
-    UIView *view = [self.tableView snapshotViewAfterScreenUpdates:NO];
-    view.center = self.tableView.center;
-    [self.tableView.superview addSubview:view];
-    [UIView animateWithDuration:0.25 animations:^{
-        view.alpha = 0;
-        view.frame = CGRectInset(view.frame, -20, -20);
-        view.center = self.tableView.center;
-    } completion:^(BOOL finished) {
-        [view removeFromSuperview];
+    [refreshController beginRefreshing];
+    __weak typeof(self) wself = self;
+    [self.dataAccessLayer getFeedForUser:self.userName withComplitionBlock:^(Timeline *timeline, NSError *error, SFResponseStatus responseStatus) {
+        if (responseStatus == SFResponseStatus_finalResponse) {
+            [refreshController endRefreshing];
+        }
+        
+        wself.timeline = timeline;
+        
+        [wself reloadData];
+        
     }];
-    
 }
 
 #pragma mark - UITableViewDelegate UITableViewDataSource

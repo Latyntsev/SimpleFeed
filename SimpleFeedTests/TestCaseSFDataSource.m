@@ -10,9 +10,7 @@
 #import <XCTest/XCTest.h>
 #import "SFDataSource.h"
 #import "SFWebService.h"
-extern NSString *const twitterLink;
-extern NSString *const key;
-extern NSString *const secret;
+#import "SFConfiguration.h"
 
 @interface TestCaseSFDataSource : XCTestCase
 
@@ -30,7 +28,7 @@ extern NSString *const secret;
 
 - (void)test_getFeedWithComplitionBlock {
     
-    NSString *user = @"dubizzle";
+    NSString *user = kDefaultUserName;
     [self.instance getFeedForUser:user withComplitionBlock:^(NSArray *data, NSError *error) {
         XCTAssert(data);
         XCTAssertNil(error);
@@ -41,23 +39,23 @@ extern NSString *const secret;
 
 - (void)test_authorizeWithKey_andSecret_complitionBlock {
     
-    [self.instance authorizeWithKey:key andSecret:secret complitionBlock:^(NSError *error) {
+    [self.instance authorizeWithKey:twitterKey andSecret:twitterSecret complitionBlock:^(NSError *error) {
         XCTAssertNil(error);
     }];
     
-    [self.instance authorizeWithKey:key andSecret:secret complitionBlock:nil];
+    [self.instance authorizeWithKey:twitterKey andSecret:twitterSecret complitionBlock:nil];
 }
 
 - (void)test_authorize {
     
     XCTAssertFalse(self.instance.isAutorized);
-    [self.instance authorizeWithKey:key andSecret:key complitionBlock:nil];
+    [self.instance authorizeWithKey:twitterKey andSecret:twitterKey complitionBlock:nil];
     XCTAssertFalse(self.instance.isAutorized);
     
-    [self.instance authorizeWithKey:key andSecret:secret complitionBlock:nil];
+    [self.instance authorizeWithKey:twitterKey andSecret:twitterSecret complitionBlock:nil];
     XCTAssertTrue(self.instance.isAutorized);
     
-    [self.instance authorizeWithKey:key andSecret:key complitionBlock:nil];
+    [self.instance authorizeWithKey:twitterKey andSecret:twitterKey complitionBlock:nil];
     XCTAssertFalse(self.instance.isAutorized);
 }
 

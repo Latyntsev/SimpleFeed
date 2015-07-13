@@ -10,12 +10,8 @@
 #import "SFDataAccessLayer.h"
 #import "SFDataSource.h"
 #import "SFWebService.h"
-
-NSString *const twitterLink = @"https://api.twitter.com/";
-
-//this key don't have any value. This is snadbox project
-NSString *const key = @"hws3MrA6qCOp0Mc9o0BgxA";
-NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
+#import "SFConfiguration.h"
+#import "SFTimeLineViewController.h"
 
 @interface AppDelegate ()
 
@@ -30,6 +26,10 @@ NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UINavigationController *navigationController = (id)self.window.rootViewController;
+    SFTimeLineViewController *viewController = navigationController.viewControllers.firstObject;
+    viewController.userName = kDefaultUserName;
+    
     return YES;
 }
 
@@ -68,8 +68,8 @@ NSString *const secret = @"6yAbeJXiRLhzyfTAYn11n3oqxne9FxWWn5JQvzZl0Tc";
         SFDataSource *dataSource = [[SFDataSource alloc] initWithWebServer:webService];
         _dataAccessLayer = [[SFDataAccessLayer alloc] initWithDataSource:dataSource
                                                                    andManagedObjectContext:self.managedObjectContext
-                                                                     key:key
-                                                                  secret:secret];
+                                                                     key:twitterKey
+                                                                  secret:twitterSecret];
     }
     return _dataAccessLayer;
 }
