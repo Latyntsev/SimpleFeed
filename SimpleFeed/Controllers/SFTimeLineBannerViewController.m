@@ -55,6 +55,17 @@
     CGFloat value = MAX((level * 4 - 3),0);
     self.locationLabel.alpha = value;
     self.descriptionLabel.alpha = value;
+    
+    [self applayStyle:self.locationLabel];
+    [self applayStyle:self.descriptionLabel];
+    [self applayStyle:self.navigationController.navigationBar];
+}
+
+- (void)applayStyle:(UIView *)view {
+    view.layer.shadowOffset = CGSizeMake(0, 1);
+    view.layer.shadowColor = [[UIColor grayColor] CGColor];
+    view.layer.shadowOpacity = 0.8;
+    view.layer.shadowRadius = 2;
 }
 
 @end
