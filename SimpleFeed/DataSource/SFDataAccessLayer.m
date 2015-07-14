@@ -158,7 +158,9 @@
                             twitterItem = profile.twits[index];
                         }
                         [twitterItem fillDataWithResponse:twitData];
-                        
+                        twitterItem.profile_image_url = [self tuneImageSizeLink:twitterItem.profile_image_url];
+                        profile.profileImageURL = [self tuneImageSizeLink:profile.profileImageURL];
+                        profile.profileBannerURL = [self tuneImageSizeLink:profile.profileBannerURL];
                     }
                     
                     [wself.managedObjectContext save:&theError];
@@ -176,8 +178,32 @@
     return blockOperation;
 }
 
+- (NSString *)tuneImageSizeLink:(NSString *)link {
+    
+    if (!link) {
+        return link;
+    }
+    NSString *regexString = @"(\\_normal)\\..{0,4}$";
+    NSRegularExpression *regExp = [NSRegularExpression regularExpressionWithPattern:regexString
+                                                                            options:NSRegularExpressionCaseInsensitive
+                                                                              error:nil];
+    
+    NSArray *array = [regExp matchesInString:link options:0 range:NSMakeRange(0,link.length)];
+    if (array.count > 0) {
+        NSTextCheckingResult *result = array.firstObject;
+        return [link stringByReplacingOccurrencesOfString:@"_normal"
+                                               withString:@""
+                                                  options:NSCaseInsensitiveSearch
+                                                    range:result.range];
+    }
+    return link;
+    
+    
+}
+
 - (void)downloadImageWithLink:(NSString *)link complitionBlock:(DownloadImageComplitionBlock)complitionBlock {
     
+    NSLog(@"link: %@",link);
     if (!self.imageCache) {
         self.imageCache = [[NSCache alloc] init];
     }

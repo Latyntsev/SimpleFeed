@@ -33,4 +33,5 @@ typedef void(^DownloadImageComplitionBlock)(UIImage *image, NSString *link, BOOL
 - (NSFetchRequest *)fetchRequestProfileByUserName:(NSString *)userName;
 - (NSFetchRequest *)fetchRequestTwitterItemForUserName:(NSString *)userName;
 
+- (NSString *)tuneImageSizeLink:(NSString *)link;
 @end
