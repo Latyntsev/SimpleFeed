@@ -203,7 +203,6 @@
 
 - (void)downloadImageWithLink:(NSString *)link complitionBlock:(DownloadImageComplitionBlock)complitionBlock {
     
-    NSLog(@"link: %@",link);
     if (!self.imageCache) {
         self.imageCache = [[NSCache alloc] init];
     }
