@@ -12,9 +12,12 @@
 @interface SFTimeLineBannerViewController : SFViewController
 
 @property (nonatomic,weak) IBOutlet UIImageView *backgroundImageView;
+@property (nonatomic,weak) IBOutlet UIImageView *gradientBackgroundView;
 @property (nonatomic,weak) IBOutlet UIImageView *userImageView;
 @property (nonatomic,weak) IBOutlet UILabel *locationLabel;
 @property (nonatomic,weak) IBOutlet UILabel *descriptionLabel;
+
+@property (nonatomic,weak) IBOutlet UIVisualEffectView *blureView;
 
 - (void)setProfile:(Profile *)profile;
 

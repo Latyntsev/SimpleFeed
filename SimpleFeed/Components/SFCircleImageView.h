@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+IB_DESIGNABLE
+
 @interface SFCircleImageView : UIImageView
+
+@property (nonatomic,strong) IBInspectable UIColor *borderColor;
+@property (nonatomic) IBInspectable CGFloat borderWidth;
 
 @end
